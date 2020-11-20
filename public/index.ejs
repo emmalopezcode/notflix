@@ -10,30 +10,31 @@
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i'
     type='text/css' media='all' />
   <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+
 </head>
 
 <body>
   <header>
     <!-- Fixed navbar -->
- 
+
   </header>
 
   <!--Main Area-->
   <main role="main" class="container">
-    <h3 id='title'>Hello World</h3>
+    <h3 id='title'>Welcome!</h3>
 
-    <ul class='set'><form name="frmSearch" method="POST" class="form mt-2 mt-md-0">
-      <input name="username" class="form-control mr-sm-2" type="text" placeholder="Username" >
-      <input name="password" class="form-control mr-sm-2" type="text" placeholder="Password" >
+    <ul class='set'>
+      <form name="frmSearch" method="POST" class="form mt-2 mt-md-0">
+       
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Notflix</button>
+      </form>
 
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Login</button>
-    </form>
 
-    
-    <%if (typeof badLogin !== 'undefined' && badLogin === true) {%>
-      <p> hey you logged in!</p>
+      <%if (typeof badLogin !== 'undefined' && badLogin === true) {%>
+      <p>Invalid username password combonation</p>
 
-    <%}%>
+      <%}%>
       
 
     </ul>
