@@ -27,6 +27,18 @@
 
 
         <p>Select by Genre</p>
+        <% genres.forEach((genre)=>{ %>
+          
+  
+  
+          <div class="wrapper">
+            <div class='text-container'>
+              <%=genre.name%>
+            </div>
+    
+          </div>
+          <%});%>
+
 
         <%if (typeof user !== 'undefined') {%>
           <div> Logged in as 

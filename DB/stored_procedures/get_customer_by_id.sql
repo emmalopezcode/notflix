@@ -18,7 +18,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE Notflix.GetCustomerById
+CREATE PROCEDURE Notflix.GetMovieById
 	-- Add the parameters for the stored procedure here
 	@id as int
 AS
@@ -28,6 +28,6 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-	SELECT * from Notflix.Customer where id = @id;
+	SELECT * from Notflix.Movies where id = @id;
 END
 GO

@@ -91,6 +91,18 @@ app.post('/customer/:id', async (req, res) => {
     }
 })
 
+//hear me out
+// select distinct Notflix.Movies.*
+	// from Notflix.Movies, Notflix.MovieGenres, Notflix.Genres
+
+    // where (Notflix.Movies.id = Notflix.MovieGenres.MovieId and 
+    // created 'in' clause so that you can have as many as you want
+
+
+app.get('/', async(req, res) => {
+    console.log('gotten baby');
+});
+
 app.post('/', async (req, res) => {
 
     try {
@@ -103,11 +115,17 @@ app.post('/', async (req, res) => {
         // console.log(result.recordset[0]['']);
 
 
+        const genres = await pool.request()
+            .query('select * from Notflix.Genres');
+
         const movies = await pool.request()
             .query(`select * from Notflix.Movies;`);
         // console.log(user.recordset);
 
-        res.render('public/browse', { movies: movies.recordset, user: user.recordset[0] });
+        res.render('public/browse', { 
+            movies: movies.recordset, 
+            user: user.recordset[0], 
+            genres: genres.recordset });
 
     }
     catch (e) {
