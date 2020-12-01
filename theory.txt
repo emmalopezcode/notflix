@@ -1,0 +1,87 @@
+
+given a genre string eg "Sci-Fi"
+
+select all from movies which contain genre x in their genre set
+
+get id of genre => 3
+
+select * from MovieGenres where GenreId = 3
+
+select * from Movies where MovieGenre = ^
+
+///////////////////////////////////////////////////
+for just one genre
+//////////////////////////////////////////////////
+declare @GenreId int;
+@GenreId = (select id from Genres where name = @genre1);
+
+
+select * from Movies where MovieGenre in
+(select * from MovieGenres where GenreId = @GenreId);
+
+//////////////////////////////////////////////////
+for multiple genres
+//////////////////////////////////////////////////
+
+select * from Movies where MovieGenre in
+(select * from MovieGenres where GenreId in
+(select id from Genres where name = @genre1);
+
+/////////////////////////////////////////////////////
+what about joins
+////////////////////////////////////////////////////
+
+select * 
+from Movies
+inner join MovieGenres on MovieGenres.MovieId = Movies.id
+where MovieGenres.GenreId = @GenreId;
+
+
+
+where clause makes sure only the movies that are in the genre come up
+
+1 - 3
+2 - 4
+4 - 3
+
+if genreId = 3 only first and 3rd records are returned
+
+we'll have to test it out?
+////////////////////////////////////////////////////////////////
+
+lets think about it again
+
+select * from movies, movieGenres, genres
+
+where (movies.id = moviegenre.movieId and genres.id = moviegenres.genreid);
+
+^^this is all the relations
+
+but what about just changing genres.id = @genreId? 
+
+interstellar - sci fi, drama 
+love actually - drama, romance
+hidden figures - historical
+
+movies - 
+1 interstellar
+2 love actually
+3 hidden figures
+
+genres -
+1 sci fi
+2 drama
+3 romance
+4 historical
+
+moviegenres -
+1 1
+1 2
+2 2
+2 3
+3 4
+
+
+
+
+
