@@ -1,5 +1,4 @@
 
-
 insert into Notflix.Genres
     (name)
 values('Romantic Comedy');

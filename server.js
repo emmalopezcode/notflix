@@ -67,11 +67,31 @@ app.get('/movies/:id', async (req, res) => {
         res.send(err.message);
     }
 })
+app.get('/movies/:id/playback', async (req, res) => {
+    try {
+        const pool = await poolPromise;
+
+        const movie = await pool.request()
+            .query('select * from Notflix.Movies where id = '+req.params.id);
+
+        console.log(movie);
+
+        res.render('public/playback', { movie: movie.recordset[0] });
+
+
+        
+    } catch (err) {
+        res.status(500);
+        res.send(err.message);
+    }
+})
 
 app.post('/customer/:id', async (req, res) => {
     console.log('hello');
     const id = sanitizer.sanitize(req.params.id);
     var body = req.body;
+
+    //make sure to sanitize all of these
 
     const infoStr = `${id}, '${body.street}', '${body.city}', ${body.state},` +
         ` '${body.firstName}', '${body.lastName}', '${body.email}'`;
@@ -91,17 +111,67 @@ app.post('/customer/:id', async (req, res) => {
     }
 })
 
-//hear me out
-// select distinct Notflix.Movies.*
-	// from Notflix.Movies, Notflix.MovieGenres, Notflix.Genres
+app.post('/byTitle', async (req, res) => {
+    try {
+        const pool = await poolPromise;
+        const movies = await pool.request()
+            .input('input_param', sql.NVarChar, '%' + req.body.txtSearch + '%')
+            .query('EXEC Notflix.searchMoviesByTitle @input_param;');
 
-    // where (Notflix.Movies.id = Notflix.MovieGenres.MovieId and 
-    // created 'in' clause so that you can have as many as you want
+        const genres = await pool.request()
+            .query('select * from Notflix.Genres');
+        //console.table(result.recordset);
+        res.render('public/browse', {
+            search: true,
+            movies: movies.recordset,
+            genres: genres.recordset
+        });
 
-
-app.get('/', async(req, res) => {
-    console.log('gotten baby');
+    } catch (err) {
+        res.status(500);
+        res.send(err.message);
+    }
 });
+
+
+
+app.get('/byGenre', async (req, res) => {
+
+    try {
+
+        const pool = await poolPromise;
+        const user = await pool.request()
+            .query(`EXEC Notflix.findUserForLogin emmalopez, test123;`);
+
+        const genres = await pool.request()
+            .query('select * from Notflix.Genres');
+
+
+
+
+        var queryString = `select Notflix.Movies.*
+        from Notflix.Movies, Notflix.MovieGenres, Notflix.Genres
+        where (Notflix.Movies.id = Notflix.MovieGenres.MovieId and 
+               Notflix.MovieGenres.GenreId = Notflix.Genres.id
+               and Notflix.Genres.id in (4));`;
+
+        const movies = await pool.request()
+            .query(queryString);
+
+        res.render('public/browse', {
+            movies: movies.recordset,
+            user: user.recordset[0],
+            genres: genres.recordset
+        });
+
+    }
+    catch (e) {
+        console.log(e);
+        res.send(e.message);
+    }
+});
+
+//GRANT EXECUTE ON OBJECT::dbo.GetCustomerById TO WebUser;
 
 app.post('/', async (req, res) => {
 
@@ -122,10 +192,11 @@ app.post('/', async (req, res) => {
             .query(`select * from Notflix.Movies;`);
         // console.log(user.recordset);
 
-        res.render('public/browse', { 
-            movies: movies.recordset, 
-            user: user.recordset[0], 
-            genres: genres.recordset });
+        res.render('public/browse', {
+            movies: movies.recordset,
+            user: user.recordset[0],
+            genres: genres.recordset
+        });
 
     }
     catch (e) {
@@ -134,6 +205,37 @@ app.post('/', async (req, res) => {
     }
 });
 
+app.get('/browse', async (req, res) => {
+
+    try {
+        //  sql.map.register(String, sql.VarChar)
+
+        const pool = await poolPromise;
+        const user = await pool.request()
+            .query(`EXEC Notflix.findUserForLogin emmalopez, test123;`);
+
+        // console.log(result.recordset[0]['']);
+
+
+        const genres = await pool.request()
+            .query('select * from Notflix.Genres');
+
+        const movies = await pool.request()
+            .query(`select * from Notflix.Movies;`);
+        // console.log(user.recordset);
+
+        res.render('public/browse', {
+            movies: movies.recordset,
+            user: user.recordset[0],
+            genres: genres.recordset
+        });
+
+    }
+    catch (e) {
+        console.log(e);
+        res.send(e.message);
+    }
+});
 
 // End routes
 
