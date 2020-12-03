@@ -1,11 +1,9 @@
--- insert into Notflix.Movies(title, director, lengthInMinutes, dateReleased, synopsis, rating)
---    values('Love Actually', 'Richard Curtis', 135, convert(date, '11/14/2003', 101),
---                        'Follows the lives of eight very different couples in dealing with their love lives in various loosely interrelated tales all set during a frantic month before Christmas in London, England.',
---                         7.6);
+insert into Notflix.Movies(title, director, lengthInMinutes, dateReleased, synopsis, rating, imagePath, playback)
+   values('Lincoln', 'Steven Spielberg', 150, convert(date, '11/16/2012', 101),
+                       'As the American Civil War continues to rage, the 16th American president struggles with continuing carnage on the battlefield as he fights with many inside his own cabinet on the decision to emancipate the slaves.',
+                        7.3, 'lincoln.jpg', '');
 
--- insert into Notflix.MovieGenres (MovieId, GenreId)
---     values(
--- 		(select id from Notflix.Movies where title = 'Love Actually'),
--- 		(select id from Notflix.Genres where name = 'Romantic Comedy')
---         );
+exec Notflix.addGenre 'Biographical', 'Lincoln';
+exec Notflix.addGenre 'Drama', 'Lincoln';
+
 

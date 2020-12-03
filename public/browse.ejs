@@ -14,75 +14,83 @@
 
 </head>
 
-<body>
+<body class='dark-background'>
   <header>
     <!-- Fixed navbar -->
- 
+
   </header>
 
   <!--Main Area-->
   <main role="main" class="container">
     <h3 id='title'>Movies</h3>
 
-    <form name="frmSearch" action='/byTitle' method="POST" class="form-inline mt-2 mt-md-0">
-      <input name="txtSearch" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+    <section class='basic-grid'>
+
+
+      <%if (typeof user !== 'undefined') {%>
+
+      <div id='logged-in'> Logged in as
+        <a href="/customer/<%=user.id%>" class='inline'><%=user.username%></a>
+      </div>
+
+      <%}%>
+
+    <form name="frmSearch" action='/byTitle' method="POST" id='search'>
+      <input name="txtSearch"  type="text" placeholder="Search" aria-label="Search">
+      <button  type="submit">Search</button>
     </form>
+
+  </section>
+
 
     <%if (typeof search !== 'undefined' && search === true) {%>
       <a href='/browse'>Clear Results</a>
-    <%}%>
+      <%}%>
 
 
 
-        <p>Select by Genre</p>
         <% genres.forEach((genre)=>{ %>
-          
-  
-  
-          <div class="wrapper">
-            <div class='text-container'>
-              <a href="/byGenre"><%=genre.name%></a> 
-            </div>
-    
-          </div>
-          <%});%>
 
 
-        <%if (typeof user !== 'undefined') {%>
-          <div> Logged in as 
-            <a href="/customer/<%=user.id%>"><%=user.username%></a> 
-          </div>
-    
-          <%}%>
+
+      <div class='genre'>
+        <a class='next-button' href="/byGenre"><%=genre.name%></a>
+      </div>
+
+      <%});%>
 
 
-    
+
+
+
+      <section class="basic-grid">
+
         <% movies.forEach((movie)=>{ %>
-          
-  
-  
-        <div class="wrapper">
-          <div class='text-container'>
-            <a href="/movies/<%=movie.id%>"> <%=movie.title%> </a>
-            <p> <%=movie.director%> </p>
-          </div>
-  
-        </div>
-  
-  
-  
-  
+
+
+
+        <a href="/movies/<%=movie.id%>" class='movie'>
+          <img src="./images/<%=movie.imagePath%>" class='movie-img'>
+          <%=movie.title%>
+
+        </a>
+
+
+
+
+
         <%});%>
-  
-      
+      </section>
 
 
-   
+
+
+
 
   </main>
 
-  
+
 
   <!-- Footer -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
