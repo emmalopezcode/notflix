@@ -1,0 +1,144 @@
+
+.next-button:hover{
+    background-color: rgb(206, 35, 35);
+    color: #fff;
+    border-color: rgb(206, 35, 35);
+    border-style: solid;   
+    text-decoration: none;
+
+}
+
+.next-button{
+    display: inline-block;
+    padding:10px;
+    border-radius: 10rem;
+    color: rgb(206, 35, 35);
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: .15rem;
+    border-width: .1em;
+    border-color: rgb(206, 35, 35);
+    border-style: solid;
+    background-color: transparent;
+}
+
+.basic-grid{
+    display:grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 2em;
+}
+
+
+.search-button{
+    display:inline;
+
+}
+
+#search {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+  }
+
+#search input {
+    vertical-align: middle;
+    margin: 5px 10px 5px 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px none #ddd;
+  }
+
+ #search button {
+    padding: 10px 20px;
+    background-color: rgb(206, 35, 35);
+    color: white;
+    display:inline-flex;
+    border-style: none;
+  }
+
+.movie{
+    display: inline-block;
+    justify-content: right;
+    align-items: right;
+    flex-direction: column;
+    background-color: rgb(67, 67, 71);
+    border-radius:10px;
+    padding: 1em;
+    color: whitesmoke;
+}
+
+.movie:hover{
+    background-color: rgb(122, 29, 29);
+    text-decoration: none;
+    color: whitesmoke;
+
+}
+
+.movie-img{
+    width:100%;
+    height:80%;
+    object-fit: cover;
+    border-radius: 10px;
+    padding-bottom: 4px;
+}
+
+.movie-title{
+    color:whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 8em;
+}
+
+
+
+#profile{
+    margin-left: 60%;
+    background-color: whitesmoke;
+    color: rgb(206, 35, 35);
+    padding:10px;
+}
+
+#profile:hover{
+    background-color: rgb(206, 35, 35);
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+#search{
+    margin-bottom: 30px;
+}
+
+
+.dark-background{
+    background-color: rgb(49, 47, 51);
+}
+
+#title-img{
+    height:1000px;
+}
+
+#sub-title{
+    color:rgb(206, 35, 35);
+    opacity:.5;
+    font-size:4em;
+
+}
+
+.genre{
+    display:inline-block;
+    margin:5px;
+}
+
+.inline{
+    float:left
+}
+
+
+
+#title{
+    color:rgb(206, 35, 35);
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12em;
+}
+

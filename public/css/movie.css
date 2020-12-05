@@ -1,0 +1,64 @@
+body {
+    background-color: rgb(49, 47, 51);
+  }
+
+  h3 {
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10em;
+    font-weight: 100;
+  }
+
+  .sub-info {
+    display: inline-block;
+    color: whitesmoke;
+    padding-left: 8px;
+    padding-right: 8px;
+    vertical-align: middle;
+    font-size: 1em;
+    font-weight: 100;
+
+
+  }
+
+  #synopsis {
+    margin-top: 30px;
+    color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 1.5em;
+
+    width: 50%;
+  }
+
+  form {
+    display: inline-block;
+
+
+  }
+  #bg-image{
+    filter:brightness(30%); 
+    position:absolute; 
+    top:0px; 
+    left:0px;
+    width: 100%;
+    z-index: -1;
+
+  }
+
+  .movie-button {
+    border: 2px solid whitesmoke;
+    background-color: transparent;
+    border-radius: 18px;
+    color: whitesmoke;
+    font-size: 1.5em;
+    padding-right: 10px;
+    padding-left: 10px;
+    
+  }
+
+  .movie-button:hover{
+    background-color: whitesmoke;
+    color: rgb(206, 35, 35);
+
+  }
