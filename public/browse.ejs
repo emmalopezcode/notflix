@@ -10,7 +10,8 @@
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i'
     type='text/css' media='all' />
   <link href="css/sticky-footer-navbar.css" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
+  <link href="./style.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
 
 </head>
 
@@ -25,23 +26,23 @@
     <h3 id='title'>Movies</h3>
 
 
-    <section class='basic-grid'>
 
 
+
+    <form name="frmSearch" action='/byTitle' method="POST" id='search'>
+
+
+      <input class='inline' name="txtSearch" type="text" placeholder="Search" aria-label="Search">
+      <button class='inline' type="submit">Search</button>
       <%if (typeof user !== 'undefined') {%>
 
-      <div id='logged-in'> Logged in as
-        <a href="/customer/<%=user.id%>" class='inline'><%=user.username%></a>
-      </div>
+      <a id='profile' href="/customer/<%=user.id%>">View Profile</a>
 
       <%}%>
 
-    <form name="frmSearch" action='/byTitle' method="POST" id='search'>
-      <input name="txtSearch"  type="text" placeholder="Search" aria-label="Search">
-      <button  type="submit">Search</button>
+
     </form>
 
-  </section>
 
 
     <%if (typeof search !== 'undefined' && search === true) {%>
@@ -55,11 +56,14 @@
 
 
       <div class='genre'>
-        <a class='next-button' href="/byGenre"><%=genre.name%></a>
+        <a class='next-button' href="/genres/<%=genre.id%>"><%=genre.name%></a>
       </div>
 
       <%});%>
 
+      <div class='genre'>
+        <a class='next-button' href="/browse">all</a>
+      </div>
 
 
 
