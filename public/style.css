@@ -113,8 +113,11 @@
 
 .dark-background{
     background-color: rgb(49, 47, 51);
-}
 
+}
+body::-webkit-scrollbar {
+    width: 11px;
+  }
 #title-img{
     height:1000px;
 }
