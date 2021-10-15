@@ -1,7 +1,7 @@
 {
     "Settings": {
       "dbConfig": {
-        "dbConnection": "mssql://webuser:power@ev-compsci-01.principia.local/emma.lopez"
+        "dbConnection": "mssql://CONFIG_INFO"
       }
     }
   }
