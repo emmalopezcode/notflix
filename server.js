@@ -279,5 +279,5 @@ app.use(express.urlencoded({ extended: true }))
 function listen() {
     var host = server.address().address;
     var port = server.address().port;
-    console.log('Listening at http://' + host + ':' + port);
+    console.log('Listening at http://localhost:' + port);
 }
